@@ -3,6 +3,7 @@ import { Processor } from './Processor.js'
 import { Table } from './Table.js'
 import { HtmlParser } from './HtmlParser.js'
 import { Writer } from './Writer.js'
+import { PDFWriter } from './PdfWriter.js'
 
 const leitor = new Reader()
 const writer = new Writer()
@@ -17,6 +18,8 @@ const main = async () => {
   const html = await HtmlParser.parser(usuarios)
 
   writer.write(`${Date.now}.html`, html)
+
+  PDFWriter.writePDF('teste1.pdf', html)
 }
 
 main()
