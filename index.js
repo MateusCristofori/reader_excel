@@ -2,8 +2,10 @@ import { Reader } from './Reader.js'
 import { Processor } from './Processor.js'
 import { Table } from './Table.js'
 import { HtmlParser } from './HtmlParser.js'
+import { Writer } from './Writer.js'
 
 const leitor = new Reader()
+const writer = new Writer()
 
 const main = async () => {
   const dados = await leitor.read('./users.csv')
@@ -13,7 +15,8 @@ const main = async () => {
   const usuarios = new Table(dadosProcessados)
 
   const html = await HtmlParser.parser(usuarios)
-  console.log(html)
+
+  writer.write(`${Date.now}.html`, html)
 }
 
 main()
